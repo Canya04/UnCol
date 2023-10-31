@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -10,6 +11,11 @@ public class PlayerScript : MonoBehaviour
     //Força
     [SerializeField]
     public float force = 10;
+
+    [SerializeField]
+    TextMeshProUGUI text_puntuacio;
+
+    int points = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -50,4 +56,15 @@ public class PlayerScript : MonoBehaviour
         Rigidbody2D player = GetComponent<Rigidbody2D>();
         player.velocity = new Vector2(player.velocity.x, force);
     }
-}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("Pickup"))
+        {
+            points++;
+            text_puntuacio.text = ("Puntuació: " + points.ToString());
+            Destroy(collision.gameObject);
+        }
+    }
+
+    }
