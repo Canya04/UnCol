@@ -49,7 +49,6 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
-
     public void Jump()
     {
         //El jugador salta
